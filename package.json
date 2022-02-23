@@ -1,8 +1,8 @@
 {
-  "name": "bundlr-demo-app",
+  "name": "arweave-polygon-bridge",
   "version": "0.1.0",
   "private": true,
-  "description": "A demo application that implements the Bundlr web client to allow for 3rd party injected signers such as those exposed by MetaMask and WalletConnect",
+  "description": "A demo application that implements the Bundlr web client to facilitate a bridge for users in Polygon to easily store data into Arweave",
   "homepage": "./",
   "dependencies": {
     "@babel/core": "^7.0.0",
