@@ -43,6 +43,8 @@ function App() {
   const toast = useToast();
   const intervalRef = React.useRef<number>();
 
+  const [tagValue, setTagValue] = React.useState<string>("image/png");
+
   const clean = async () => {
     clearInterval(intervalRef.current);
     setBalance(undefined);
@@ -95,7 +97,7 @@ function App() {
   const uploadFile = async () => {
     if (img) {
       await bundler?.uploader
-        .upload(img, [{ name: "Content-Type", value: "image/png" }])
+        .upload(img, [{ name: "Content-Type", value: tagValue }])
         .then(res => {
           toast({
             status:
@@ -445,6 +447,23 @@ function App() {
               onChange={updateWithdrawAmount}
             />
           </HStack>
+
+          <HStack>
+              
+            <Text>Tags Value:</Text>  
+            // TODO Optimize Display
+            <Input
+
+              onChange={event => setTagValue(event.target.value)} 
+              placeholder="image/png" 
+            />
+          </HStack>
+          
+          <p>// TODO: three ways to upload file: </p>
+          <p>- paste text</p>
+          <p>- upload any file</p>
+
+            <Button onClick={handleFileClick}>Select file from Device</Button>
           <Button onClick={handleFileClick}>Select file from Device</Button>
           {img && (
             <>
