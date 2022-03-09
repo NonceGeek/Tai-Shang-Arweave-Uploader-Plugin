@@ -1,5 +1,5 @@
 # Arweave <> Polygon Bridge
-> Live Demo:
+> Live Demo: https://welightproject.github.io/Arweave-Polygon-Bridge/
 ## Introduction
 This app demonstrates usage of the [`bundlr-client`](https://github.com/Bundlr-Network/js-client) to facilitate a bridge for users in Polygon to easily store data into Arweave, packaging them into bundles using a bundler from the [Bundlr Network](https://bundlr.network) app, and dispatching them to the Arweave network.
 
@@ -23,11 +23,5 @@ The Demo App is a JS/TS based solution that has the following architecture and w
 ## Features
 
 - Allow the user to login with their Polygon wallet
-- Use bundlr.network to allow users to deploy content with their MATIC tokens
-- Show the submitted transactions and their content to the end user
-
-## Implementation Details
-
-### Connect the wallet
-
-This app uses [`web3-react`](https://github.com/NoahZinsmeister/web3-react) to connect with Metamask and WalletConnect. A full explanation of integrating any specific web3 wallet provider can be found there.
+- Use bundlr.network to store files with their MATIC tokens
+- Use bundlr.network to store code/text with their MATIC tokens
