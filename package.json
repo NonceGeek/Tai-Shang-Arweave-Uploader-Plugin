@@ -5,6 +5,7 @@
   "description": "A demo application that implements the Bundlr web client to facilitate a bridge for users in Polygon to easily store data into Arweave",
   "homepage": "./",
   "dependencies": {
+    "csstype": "3.0.10",
     "@babel/core": "^7.0.0",
     "@bundlr-network/client": "^0.5.12",
     "@chakra-ui/icons": "^1.1.1",
