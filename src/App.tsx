@@ -14,6 +14,8 @@ import {
   MenuList,
   MenuItem,
   Tooltip,
+  useTabsDescendantsContext,
+  Textarea,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
@@ -44,6 +46,10 @@ function App() {
   const intervalRef = React.useRef<number>();
 
   const [tagValue, setTagValue] = React.useState<string>("image/png");
+  const [tagValueOfTxt, setTagValueOfTxt] = React.useState<string>("application/elixir");
+
+  const [txt, setTxt] = React.useState<string>("test");
+  const [txtPrice, setTxtPrice] = React.useState<BigNumber>();
 
   const clean = async () => {
     clearInterval(intervalRef.current);
@@ -94,10 +100,50 @@ function App() {
     }
   };
 
+  const handleTxtPrice = async () => {
+    
+    if (txt) {
+      const price = await bundler?.utils.getPrice(
+        currency as string,
+        Buffer.from(txt, 'utf8').length
+      );
+      //@ts-ignore
+      setTxtPrice(price?.toString());
+    }
+  };
+
+
   const uploadFile = async () => {
     if (img) {
       await bundler?.uploader
-        .upload(img, [{ name: "Content-Type", value: tagValue }])
+        .upload(img, [
+          { name: "Content-Type", value: tagValue }])
+        .then(res => {
+          toast({
+            status:
+              res?.status === 200 || res?.status === 201 ? "success" : "error",
+            title:
+              res?.status === 200 || res?.status === 201
+                ? "Successful!"
+                : `Unsuccessful! ${res?.status}`,
+            description: res?.data.id
+              ? `https://arweave.net/${res.data.id}`
+              : undefined,
+            duration: 15000,
+          });
+          console.log("uploaded tx id is " + res.data.id);
+        })
+        .catch(e => {
+          toast({ status: "error", title: `Failed to upload - ${e}` });
+        });
+    }
+  };
+
+  // add by @leeduckgo
+  const uploadTxt = async () => {
+    if (txt) {
+      await bundler?.uploader
+        .upload(Buffer.from(txt, 'utf8'), [{ name: "Content-Type", value: tagValueOfTxt }]) // transfer txt to buffer.
         .then(res => {
           toast({
             status:
@@ -179,6 +225,11 @@ function App() {
 
   const updateWithdrawAmount = (evt: React.BaseSyntheticEvent) => {
     setWithdrawAmount(evt.target.value);
+  };
+
+  // upload here.
+  const updateTxt = (evt: React.BaseSyntheticEvent) => {
+    setTxt(evt.target.value);
   };
 
   const connectWeb3 = async (connector: any) => {
@@ -448,9 +499,12 @@ function App() {
             />
           </HStack>
 
+          <Text>----------------------------------</Text>
+          <Text>Way 0x01. Upload File</Text>
+
           <HStack>
-              
-            <Text>Tags Value:</Text>  
+          
+            <Text>Tags Value(default is "image/png"):</Text>  
             // TODO Optimize Display
             <Input
 
@@ -459,11 +513,9 @@ function App() {
             />
           </HStack>
           
-          <p>// TODO: three ways to upload file: </p>
-          <p>- paste text</p>
-          <p>- upload any file</p>
+          
+          
 
-            <Button onClick={handleFileClick}>Select file from Device</Button>
           <Button onClick={handleFileClick}>Select file from Device</Button>
           {img && (
             <>
@@ -475,9 +527,42 @@ function App() {
                     .toString()} ${bundler.currencyConfig.ticker.toLowerCase()} `}</Text>
                 )}
               </HStack>
-              <Button onClick={uploadFile}>Upload to Bundlr Network</Button>
+              <Button onClick={uploadFile}>Upload File to Bundlr Network</Button>
             </>
           )}
+
+          <Text>----------------------------------</Text>
+          <Text>Way 0x02. Upload Code or Any Other Txt</Text>
+
+          <HStack>
+            <Textarea
+              onChange={updateTxt}
+              style={{ minHeight: '300px', marginTop: '5px', width: '500px'}}
+            >
+            
+            </Textarea>
+          </HStack>
+          <HStack>
+            <Text>Tags Value(default is "application/elixir"):</Text>  
+            <Input
+
+              onChange={event => setTagValueOfTxt(event.target.value)} 
+              placeholder="application/elixir"
+            />
+          </HStack>
+          
+          <HStack>
+            <Button onClick={handleTxtPrice}>Get Price</Button>
+            {txtPrice && (
+              <Text>
+                {`Cost: ${bundler.utils
+                .unitConverter(txtPrice)
+                .toString()} ${bundler.currencyConfig.ticker.toLowerCase()} `}
+              </Text>
+            )}
+          </HStack>
+              <Button onClick={uploadTxt}>Upload Text to Bundlr Network</Button>
+
         </>
       )}
     </VStack>
