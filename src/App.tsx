@@ -14,8 +14,8 @@ import {
   MenuList,
   MenuItem,
   Tooltip,
-  useTabsDescendantsContext,
   Textarea,
+  Divider,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
@@ -46,7 +46,8 @@ function App() {
   const intervalRef = React.useRef<number>();
 
   const [tagValue, setTagValue] = React.useState<string>("image/png");
-  const [tagValueOfTxt, setTagValueOfTxt] = React.useState<string>("application/elixir");
+  const [tagValueOfTxt, setTagValueOfTxt] =
+    React.useState<string>("application/elixir");
 
   const [txt, setTxt] = React.useState<string>("test");
   const [txtPrice, setTxtPrice] = React.useState<BigNumber>();
@@ -101,23 +102,20 @@ function App() {
   };
 
   const handleTxtPrice = async () => {
-    
     if (txt) {
       const price = await bundler?.utils.getPrice(
         currency as string,
-        Buffer.from(txt, 'utf8').length
+        Buffer.from(txt, "utf8").length
       );
       //@ts-ignore
       setTxtPrice(price?.toString());
     }
   };
 
-
   const uploadFile = async () => {
     if (img) {
       await bundler?.uploader
-        .upload(img, [
-          { name: "Content-Type", value: tagValue }])
+        .upload(img, [{ name: "Content-Type", value: tagValue }])
         .then(res => {
           toast({
             status:
@@ -143,7 +141,9 @@ function App() {
   const uploadTxt = async () => {
     if (txt) {
       await bundler?.uploader
-        .upload(Buffer.from(txt, 'utf8'), [{ name: "Content-Type", value: tagValueOfTxt }]) // transfer txt to buffer.
+        .upload(Buffer.from(txt, "utf8"), [
+          { name: "Content-Type", value: tagValueOfTxt },
+        ]) // transfer txt to buffer.
         .then(res => {
           toast({
             status:
@@ -424,6 +424,8 @@ function App() {
           </MenuList>
         </Menu>
         <Button
+          w={300}
+          colorScheme="green"
           disabled={
             !(
               selection !== defaultSelection &&
@@ -437,9 +439,10 @@ function App() {
         </Button>
       </HStack>
       <Text>Connected Account: {address ?? "None"}</Text>
-      <HStack>
+      <HStack w={1000}>
         <Button
-          w={400}
+          w={300}
+          colorScheme="green"
           disabled={!provider}
           onClick={async () => await initBundlr()}
         >
@@ -450,11 +453,10 @@ function App() {
           onChange={updateAddress}
           placeholder="Bundler Address"
         />
-      </HStack>
-      {bundler && (
-        <>
-          <HStack>
+        {bundler && (
+          <>
             <Button
+              w={300}
               onClick={async () => {
                 address &&
                   bundler!.getBalance(address).then((res: BigNumber) => {
@@ -463,34 +465,36 @@ function App() {
                 await toggleRefresh();
               }}
             >
-              Get {toProperCase(currency)} Balance
+              Get Balance
             </Button>
             {balance && (
               <Tooltip label={`(${balance} ${bundler.currencyConfig.base[0]})`}>
-                <Text>
-                  {toProperCase(currency)} Balance:{" "}
+                <Text style={{ whiteSpace: "nowrap" }}>
                   {bundler.utils
                     .unitConverter(balance)
-                    .toFixed(7, 2)
+                    .toFixed(4, 2)
                     .toString()}{" "}
                   {bundler.currencyConfig.ticker.toLowerCase()}
                 </Text>
               </Tooltip>
             )}
-          </HStack>
-          <HStack>
-            <Button w={200} onClick={fund}>
-              Fund Bundlr
+          </>
+        )}
+      </HStack>
+      {bundler && (
+        <>
+          <HStack w={1000}>
+            <Button w={300} onClick={fund}
+            >
+              Fund
             </Button>
             <Input
               placeholder={`${toProperCase(currency)} Amount`}
               value={fundAmount}
               onChange={updateFundAmount}
             />
-          </HStack>
-          <HStack>
-            <Button w={200} onClick={withdraw}>
-              Withdraw Balance
+            <Button w={300} onClick={withdraw}>
+              Withdraw
             </Button>
             <Input
               placeholder={`${toProperCase(currency)} Amount`}
@@ -499,70 +503,67 @@ function App() {
             />
           </HStack>
 
-          <Text>----------------------------------</Text>
-          <Text>Way 0x01. Upload File</Text>
+          <Divider w={1000}/>
+          <Text fontSize='xl'>Choice 0x01. Upload File</Text>
 
           <HStack>
-          
-            <Text>Tags Value(default is "image/png"):</Text>  
-            // TODO Optimize Display
+            <Text>Type(default is "image/png"):</Text>
             <Input
-
-              onChange={event => setTagValue(event.target.value)} 
-              placeholder="image/png" 
+              onChange={event => setTagValue(event.target.value)}
+              placeholder="image/png"
             />
           </HStack>
-          
-          
-          
 
-          <Button onClick={handleFileClick}>Select file from Device</Button>
+          <Button w={300} onClick={handleFileClick}>Select file from Device</Button>
           {img && (
             <>
               <HStack>
-                <Button onClick={handlePrice}>Get Price</Button>
+                <Button w={300} onClick={handlePrice}>
+                  Get Price
+                </Button>
                 {price && (
                   <Text>{`Cost: ${bundler.utils
                     .unitConverter(price)
                     .toString()} ${bundler.currencyConfig.ticker.toLowerCase()} `}</Text>
                 )}
               </HStack>
-              <Button onClick={uploadFile}>Upload File to Bundlr Network</Button>
+              <Button w={300} onClick={uploadFile}>
+                Upload File to Bundlr Network
+              </Button>
             </>
           )}
 
-          <Text>----------------------------------</Text>
-          <Text>Way 0x02. Upload Code or Any Other Txt</Text>
+          <Divider w={1000}/>
+          <Text fontSize='xl'>Choice 0x02. Upload Code or Any Other Txt</Text>
 
           <HStack>
             <Textarea
               onChange={updateTxt}
-              style={{ minHeight: '300px', marginTop: '5px', width: '500px'}}
-            >
-            
-            </Textarea>
+              style={{ minHeight: "300px", marginTop: "5px", width: "500px" }}
+            ></Textarea>
           </HStack>
           <HStack>
-            <Text>Tags Value(default is "application/elixir"):</Text>  
+            <Text>Type(default is "application/elixir"):</Text>
             <Input
-
-              onChange={event => setTagValueOfTxt(event.target.value)} 
+              onChange={event => setTagValueOfTxt(event.target.value)}
               placeholder="application/elixir"
             />
           </HStack>
-          
-          <HStack>
-            <Button onClick={handleTxtPrice}>Get Price</Button>
+
+          <HStack
+            w={1000}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Button w={300} onClick={handleTxtPrice}>Get Price</Button>
             {txtPrice && (
               <Text>
                 {`Cost: ${bundler.utils
-                .unitConverter(txtPrice)
-                .toString()} ${bundler.currencyConfig.ticker.toLowerCase()} `}
+                  .unitConverter(txtPrice)
+                  .toString()} ${bundler.currencyConfig.ticker.toLowerCase()} `}
               </Text>
             )}
           </HStack>
-              <Button onClick={uploadTxt}>Upload Text to Bundlr Network</Button>
-
+          <Button w={300} onClick={uploadTxt}>Upload Text to Bundlr Network</Button>
         </>
       )}
     </VStack>
