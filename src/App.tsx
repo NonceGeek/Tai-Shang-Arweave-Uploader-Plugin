@@ -484,8 +484,7 @@ function App() {
       {bundler && (
         <>
           <HStack w={1000}>
-            <Button w={300} onClick={fund}
-            >
+            <Button w={300} onClick={fund}>
               Fund
             </Button>
             <Input
@@ -503,8 +502,8 @@ function App() {
             />
           </HStack>
 
-          <Divider w={1000}/>
-          <Text fontSize='xl'>Choice 0x01. Upload File</Text>
+          <Divider w={1000} />
+          <Text fontSize="xl">Choice 0x01. Upload File</Text>
 
           <HStack>
             <Text>Type(default is "image/png"):</Text>
@@ -514,7 +513,9 @@ function App() {
             />
           </HStack>
 
-          <Button w={300} onClick={handleFileClick}>Select file from Device</Button>
+          <Button w={300} onClick={handleFileClick}>
+            Select file from Device
+          </Button>
           {img && (
             <>
               <HStack>
@@ -533,8 +534,8 @@ function App() {
             </>
           )}
 
-          <Divider w={1000}/>
-          <Text fontSize='xl'>Choice 0x02. Upload Code or Any Other Txt</Text>
+          <Divider w={1000} />
+          <Text fontSize="xl">Choice 0x02. Upload Code or Any Other Txt</Text>
 
           <HStack>
             <Textarea
@@ -554,7 +555,9 @@ function App() {
             w={1000}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Button w={300} onClick={handleTxtPrice}>Get Price</Button>
+            <Button w={300} onClick={handleTxtPrice}>
+              Get Price
+            </Button>
             {txtPrice && (
               <Text>
                 {`Cost: ${bundler.utils
@@ -563,7 +566,9 @@ function App() {
               </Text>
             )}
           </HStack>
-          <Button w={300} onClick={uploadTxt}>Upload Text to Bundlr Network</Button>
+          <Button w={300} onClick={uploadTxt}>
+            Upload Text to Bundlr Network
+          </Button>
         </>
       )}
     </VStack>
