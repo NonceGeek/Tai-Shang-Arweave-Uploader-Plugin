@@ -119,7 +119,7 @@ TaiShang NFT renderer for rendering abstract NFTs. Plugin is used to upload reso
 
 TaiShang Voxel processor. Plugin is used to upload Voxel resources, convert Voxel Mint to NFT or transfer them to 3D printing device.
 
-Online Demo :
+Online Demo
 
 > https://leeduckgo.github.io/Tai-Shang-Voxel-Handler/play_with_voxel
 
