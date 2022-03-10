@@ -16,6 +16,7 @@ import {
   Tooltip,
   Textarea,
   Divider,
+  Code
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
@@ -50,7 +51,7 @@ function App() {
   const [tagValueOfTxt, setTagValueOfTxt] =
     React.useState<string>("application/elixir");
 
-  
+
   const [lastTxId, setLastTxId] = useState("");
   const [txt, setTxt] = React.useState<string>("just a piece of word");
   const [txtPrice, setTxtPrice] = React.useState<BigNumber>();
@@ -588,19 +589,19 @@ function App() {
             Upload Text to Bundlr Network
           </Button>
 
-          <Text>
+          <Text fontSize="lg">
             Result Json:
           </Text>
-          <Text>
-            &#123; <br></br> 
+          <Code w={300}>
+            &#123; <br></br>
             &nbsp;&nbsp;&nbsp;&nbsp;"tx_id": "{window.lastTxId}", <br></br>
-            &nbsp;&nbsp;&nbsp;&nbsp;"resource_link": "https://arweave.net/{window.lastTxId}", <br></br> 
-            &nbsp;&nbsp;&nbsp;&nbsp;"uploader": "{address}", <br></br> 
-            &nbsp;&nbsp;&nbsp;&nbsp;"copy_from": "bundlr"<br></br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;"resource_link": "https://arweave.net/{window.lastTxId}", <br></br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"uploader": "{address}", <br></br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"copy_from": "bundlr"<br></br>
             &#125;
-          </Text>
+          </Code>
 
-          <Text>
+          <Text fontSize="lg">
             Signature:
           </Text>
           <Text>
@@ -610,27 +611,27 @@ function App() {
 
 
           <CopyToClipboard text={`{ "uploader": "${address}", "tx_hash": "${lastTxId}", "resource_link": "https://arweave.net/${lastTxId}", "copy_from": "bundlr" }`}>
-            <Button width='300px'>Copy full json to Clipboard</Button>
+            <Button width='300px'>Copy full JSON</Button>
           </CopyToClipboard>
 
           <CopyToClipboard text={`https://arweave.net/${lastTxId}`}>
-            <Button width='300px'>Copy resource link to Clipboard only</Button>
+            <Button width='300px'>Copy resource link only</Button>
           </CopyToClipboard>
 
           <Button w={300} onClick={signMsg}>
             generate signature
           </Button>
-          
+
           <CopyToClipboard text={`
             {
               "payload":
                 { "uploader": "${address}", "tx_hash": "${lastTxId}", "resource_link": "https://arweave.net/${lastTxId}", "copy_from": "bundlr" },
-              "signature": 
+              "signature":
                 "${sig}"
             }
-            
+
             `}>
-            <Button width='300px'>Copy full json with signature to Clipboard</Button>
+            <Button width='300px'>Copy JSON with signature to Clipboard</Button>
           </CopyToClipboard>
         </>
       )}

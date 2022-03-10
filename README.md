@@ -18,9 +18,25 @@ This app demonstrates usage of the [`bundlr-client`](https://github.com/Bundlr-N
 
 ## Features
 
-- Allow the user to login with their Polygon wallet
-- Use bundlr.network to store files with their MATIC tokens
-- Use bundlr.network to store code/text with their MATIC tokens
+- Allow the user to upload files to Arweave with Matic payment.
+- Allow two ways of uploading, adapted to the needs of different applications. For example:
+  - code snippets uploading to FaaS -- text copy and paste
+  - NFT uploading -- files and images
+- Allow two ways of instant copying of the result
+  - Copy only the link to the uploaded tx
+  - Copy the full JSON as the followed format
+    ```js
+    {
+        "tx_id": "",
+        "resource_link": "https://arweave.net/",
+        "uploader": "0x73c7448760517e3e6e416b2c130e3c6db2026a1d",
+        "copy_from": "bundlr"
+    }```
+- Allow user to verify their identity as resource uploader with MetaMask signing.
+
+    Sign the above JSON with the `generate signature` button and provide the `Copy full JSON with signature` button to verify the identity of the resource uploader
+
+![](/demo.png)
 
 ## As TaiShang ArweaveUploadPlugin
 
