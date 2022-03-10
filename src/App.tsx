@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { WebBundlr } from "@bundlr-network/client";
 import BigNumber from "bignumber.js";
@@ -22,8 +22,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { providers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
-
-// import {CopyToClipboard} from './';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 declare var window: any; // TODO: specifically extend type to valid injected objects.
 
@@ -51,7 +50,8 @@ function App() {
   const [tagValueOfTxt, setTagValueOfTxt] =
     React.useState<string>("application/elixir");
 
-  var lastTxId: string = "";
+  // var lastTxId: string = "";
+  const [lastTxId, setLastTxId] = useState("");
   const [txt, setTxt] = React.useState<string>("just a piece of word");
   const [txtPrice, setTxtPrice] = React.useState<BigNumber>();
 
@@ -133,6 +133,7 @@ function App() {
             duration: 15000,
           });
           window.lastTxId = res.data.id;
+          setLastTxId(res.data.id);
           console.log("uploaded tx id is " + window.lastTxId);
         })
         .catch(e => {
@@ -167,6 +168,7 @@ function App() {
             duration: 15000,
           });
           window.lastTxId = res.data.id;
+          setLastTxId(res.data.id);
           console.log("uploaded tx id is " + window.lastTxId);
         })
         .catch(e => {
@@ -580,6 +582,11 @@ function App() {
           <Button w={300} onClick={uploadTxt}>
             Upload Text to Bundlr Network
           </Button>
+
+
+          <CopyToClipboard text={`{ "address": "${address}", "tx_hash": "${lastTxId}", "copy_from": "bundlr" }`}>
+            <Button width='300px'>Copy to clipboard with button</Button>
+          </CopyToClipboard>
           
         </>
       )}
