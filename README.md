@@ -3,6 +3,13 @@
 ## Introduction
 This app demonstrates usage of the [`bundlr-client`](https://github.com/Bundlr-Network/js-client) to facilitate a bridge for users in Polygon to easily store data into Arweave, packaging them into bundles using a bundler from the [Bundlr Network](https://bundlr.network) app, and dispatching them to the Arweave network.
 
+## Quick Start
+
+```
+npm i
+npm start
+```
+
 ## Prerequistes
 ### Arweave
 [Arweave](https://www.arweave.org) is a permanent storage network that enables you to store documents and applications forever.
