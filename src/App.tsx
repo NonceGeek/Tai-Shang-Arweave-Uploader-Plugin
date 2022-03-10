@@ -50,10 +50,12 @@ function App() {
   const [tagValueOfTxt, setTagValueOfTxt] =
     React.useState<string>("application/elixir");
 
-  // var lastTxId: string = "";
+  
   const [lastTxId, setLastTxId] = useState("");
   const [txt, setTxt] = React.useState<string>("just a piece of word");
   const [txtPrice, setTxtPrice] = React.useState<BigNumber>();
+
+  const [sig, setSig] = useState("");
 
   const clean = async () => {
     clearInterval(intervalRef.current);
@@ -66,6 +68,14 @@ function App() {
     setCurrency(defaultCurrency);
     setSelection(defaultSelection);
   };
+
+  const signMsg = async() => {
+    if(provider){
+      var msg = `{ "uploader": "${address}", "tx_hash": "${lastTxId}", "resource_link": "https://arweave.net/${lastTxId}", "copy_from": "bundlr" }`
+      setSig(await provider.send("personal_sign", [ msg, address ]));
+      console.log(sig);
+    }
+  }
 
   const handleFileClick = () => {
     var fileInputEl = document.createElement("input");
@@ -589,11 +599,38 @@ function App() {
             &nbsp;&nbsp;&nbsp;&nbsp;"copy_from": "bundlr"<br></br> 
             &#125;
           </Text>
+
+          <Text>
+            Signature:
+          </Text>
+          <Text>
+            {sig}
+          </Text>
+
+
+
           <CopyToClipboard text={`{ "uploader": "${address}", "tx_hash": "${lastTxId}", "resource_link": "https://arweave.net/${lastTxId}", "copy_from": "bundlr" }`}>
             <Button width='300px'>Copy full json to Clipboard</Button>
           </CopyToClipboard>
+
           <CopyToClipboard text={`https://arweave.net/${lastTxId}`}>
             <Button width='300px'>Copy resource link to Clipboard only</Button>
+          </CopyToClipboard>
+
+          <Button w={300} onClick={signMsg}>
+            generate signature
+          </Button>
+          
+          <CopyToClipboard text={`
+            {
+              "payload":
+                { "uploader": "${address}", "tx_hash": "${lastTxId}", "resource_link": "https://arweave.net/${lastTxId}", "copy_from": "bundlr" },
+              "signature": 
+                "${sig}"
+            }
+            
+            `}>
+            <Button width='300px'>Copy full json with signature to Clipboard</Button>
           </CopyToClipboard>
         </>
       )}
