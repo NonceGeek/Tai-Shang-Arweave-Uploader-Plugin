@@ -121,6 +121,6 @@ TaiShang Voxel processor. Plugin is used to upload Voxel resources, convert Voxe
 
 Online Demo
 
-> https://leeduckgo.github.io/Tai-Shang-Voxel-Handler/play_with_voxel
+> https://leeduckgo.github.io/Tai-Shang-Voxel-Handler
 
 <img src="readme_assets/voxel_handler.png" style="zoom:50%;" />
