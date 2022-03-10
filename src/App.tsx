@@ -80,7 +80,7 @@ function App() {
   const handleFileClick = () => {
     var fileInputEl = document.createElement("input");
     fileInputEl.type = "file";
-    fileInputEl.accept = "image/*";
+    fileInputEl.accept = "*/*";
     fileInputEl.style.display = "none";
     document.body.appendChild(fileInputEl);
     fileInputEl.addEventListener("input", function (e) {
