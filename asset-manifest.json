@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/Arweave-Polygon-Bridge/static/js/main.4f5a985f.chunk.js",
-    "main.js.map": "/Arweave-Polygon-Bridge/static/js/main.4f5a985f.chunk.js.map",
-    "runtime-main.js": "/Arweave-Polygon-Bridge/static/js/runtime-main.1b80786b.js",
-    "runtime-main.js.map": "/Arweave-Polygon-Bridge/static/js/runtime-main.1b80786b.js.map",
-    "static/js/2.4e2a0c6b.chunk.js": "/Arweave-Polygon-Bridge/static/js/2.4e2a0c6b.chunk.js",
-    "static/js/2.4e2a0c6b.chunk.js.map": "/Arweave-Polygon-Bridge/static/js/2.4e2a0c6b.chunk.js.map",
-    "index.html": "/Arweave-Polygon-Bridge/index.html",
-    "static/js/2.4e2a0c6b.chunk.js.LICENSE.txt": "/Arweave-Polygon-Bridge/static/js/2.4e2a0c6b.chunk.js.LICENSE.txt"
+    "main.js": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/main.36b0523a.chunk.js",
+    "main.js.map": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/main.36b0523a.chunk.js.map",
+    "runtime-main.js": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/runtime-main.d61d644c.js",
+    "runtime-main.js.map": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/runtime-main.d61d644c.js.map",
+    "static/js/2.6ce1fa4b.chunk.js": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/2.6ce1fa4b.chunk.js",
+    "static/js/2.6ce1fa4b.chunk.js.map": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/2.6ce1fa4b.chunk.js.map",
+    "index.html": "/Tai-Shang-Arweave-Uploader-Plugin/index.html",
+    "static/js/2.6ce1fa4b.chunk.js.LICENSE.txt": "/Tai-Shang-Arweave-Uploader-Plugin/static/js/2.6ce1fa4b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.1b80786b.js",
-    "static/js/2.4e2a0c6b.chunk.js",
-    "static/js/main.4f5a985f.chunk.js"
+    "static/js/runtime-main.d61d644c.js",
+    "static/js/2.6ce1fa4b.chunk.js",
+    "static/js/main.36b0523a.chunk.js"
   ]
 }
