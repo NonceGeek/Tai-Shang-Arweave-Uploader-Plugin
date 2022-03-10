@@ -1,5 +1,5 @@
 # Tai-Shang-Arweave-Uploader-Plugin
-> Live Demo: https://welightproject.github.io/Arweave-Polygon-Bridge/
+> Live Demo: https://welightproject.github.io/Tai-Shang-Arweave-Uploader-Plugin/
 ## Introduction
 This app demonstrates usage of the [`bundlr-client`](https://github.com/Bundlr-Network/js-client) to facilitate a bridge for users in Polygon to easily store data into Arweave, packaging them into bundles using a bundler from the [Bundlr Network](https://bundlr.network) app, and dispatching them to the Arweave network.
 
