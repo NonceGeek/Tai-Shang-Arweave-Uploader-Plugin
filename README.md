@@ -1,16 +1,59 @@
 # Tai-Shang-Arweave-Uploader-Plugin
+
 > Live Demo: https://welightproject.github.io/Tai-Shang-Arweave-Uploader-Plugin/
+
 ## Introduction
+
 This app demonstrates usage of the [`bundlr-client`](https://github.com/Bundlr-Network/js-client) to facilitate a bridge for users in Polygon to easily store data into Arweave, packaging them into bundles using a bundler from the [Bundlr Network](https://bundlr.network) app, and dispatching them to the Arweave network.
 
 ## Quick Start
 
+### Prepare environment
+
+#### Node.js
+
+Install Node.js LTS verison from its [offical website](https://nodejs.org/en/).
+
+#### Yarn
+
+Install Yarn from its [offical website](https://yarnpkg.com/).
+
+#### Git
+
+Install Git from its [offical website](https://git-scm.com/).
+
+### Setup project
+
+#### Clone project
+
+Clone project from [WeLightProject/Tai-Shang-Arweave-Uploader-Plugin](https://github.com/WeLightProject/Tai-Shang-Arweave-Uploader-Plugin).
+
+```sh
+git clone https://github.com/WeLightProject/Tai-Shang-Arweave-Uploader-Plugin
 ```
-npm i
-npm start
+
+#### Install dependencies
+
+Run following command to install dependencies.
+
+```sh
+yarn install
+```
+
+### Start Project
+
+You can run following commands.
+
+```sh
+yarn start
+yarn build
+yarn test
+yarn predeploy
+yarn deploy
 ```
 
 ## Prerequistes
+
 ### Arweave
 [Arweave](https://www.arweave.org) is a permanent storage network that enables you to store documents and applications forever.
 
@@ -52,8 +95,6 @@ npm start
     Sign the above JSON with the `generate signature` button and provide the `Copy full JSON with signature` button to verify the identity of the resource uploader.
     
     <img src="readme_assets/signature.gif" style="zoom:33%;" />
-
-
 
 ## As TaiShang ArweaveUploadPlugin
 
