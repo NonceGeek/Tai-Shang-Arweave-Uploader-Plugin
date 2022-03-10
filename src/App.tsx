@@ -143,11 +143,6 @@ function App() {
   };
 
   // add by @leeduckgo
-  const copyJson = async() => {
-
-  }
-
-  // add by @leeduckgo
   const uploadTxt = async () => {
     if (txt) {
       await bundler?.uploader
@@ -516,7 +511,7 @@ function App() {
           </HStack>
 
           <Divider w={1000} />
-          <Text fontSize="xl">Choice 0x01. Upload File</Text>
+          <Text fontSize="xl"><b>Choice 0x01. Upload File</b></Text>
 
           <HStack>
             <Text>Type(default is "image/png"):</Text>
@@ -548,7 +543,7 @@ function App() {
           )}
 
           <Divider w={1000} />
-          <Text fontSize="xl">Choice 0x02. Upload Code or Any Other Txt</Text>
+          <Text fontSize="xl"><b>Choice 0x02.Upload Code or Any Other Txt</b></Text>
 
           <HStack>
             <Textarea
@@ -583,11 +578,23 @@ function App() {
             Upload Text to Bundlr Network
           </Button>
 
-
-          <CopyToClipboard text={`{ "address": "${address}", "tx_hash": "${lastTxId}", "copy_from": "bundlr" }`}>
-            <Button width='300px'>Copy to clipboard with button</Button>
+          <Text>
+            Result Json:
+          </Text>
+          <Text>
+            &#123; <br></br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;"tx_id": "{window.lastTxId}", <br></br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"resource_link": "https://arweave.net/{window.lastTxId}", <br></br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;"uploader": "{address}", <br></br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;"copy_from": "bundlr"<br></br> 
+            &#125;
+          </Text>
+          <CopyToClipboard text={`{ "uploader": "${address}", "tx_hash": "${lastTxId}", "resource_link": "https://arweave.net/${lastTxId}", "copy_from": "bundlr" }`}>
+            <Button width='300px'>Copy full json to Clipboard</Button>
           </CopyToClipboard>
-          
+          <CopyToClipboard text={`https://arweave.net/${lastTxId}`}>
+            <Button width='300px'>Copy resource link to Clipboard only</Button>
+          </CopyToClipboard>
         </>
       )}
     </VStack>
