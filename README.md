@@ -2,13 +2,13 @@
 
 > Live Demo: https://welightproject.github.io/Tai-Shang-Arweave-Uploader-Plugin/
 
-## Introduction
+## 0x01 Introduction
 
 This app demonstrates usage of the [`bundlr-client`](https://github.com/Bundlr-Network/js-client) to facilitate a bridge for users in Polygon to easily store data into Arweave, packaging them into bundles using a bundler from the [Bundlr Network](https://bundlr.network) app, and dispatching them to the Arweave network.
 
-## Quick Start
+## 0x02 Quick Start
 
-### Prepare environment
+### 2.1 Prepare environment
 
 #### Node.js
 
@@ -22,7 +22,7 @@ Install Yarn from its [offical website](https://yarnpkg.com/).
 
 Install Git from its [offical website](https://git-scm.com/).
 
-### Setup project
+### 2.2 Setup project
 
 #### Clone project
 
@@ -40,7 +40,7 @@ Run following command to install dependencies.
 yarn install
 ```
 
-### Start Project
+### 2.3 Start Project
 
 You can run following commands.
 
@@ -52,21 +52,21 @@ yarn predeploy
 yarn deploy
 ```
 
-## Prerequistes
+## 0x03 Prerequistes
 
-### Arweave
+### 3.1 Arweave
 [Arweave](https://www.arweave.org) is a permanent storage network that enables you to store documents and applications forever.
 
-### Polygon
+### 3.2 Polygon
 [Polygon](https://polygon.technology) is a decentralised Ethereum scaling platform that enables developers to build scalable user-friendly dApps with low transaction fees without ever sacrificing on security.
 
-### Bundlr
+### 3.3 Bundlr
 
 > Bundlr is Bundlr, not Bundler!
 
 [Bundlr](https://bundlr.network) is a multi-chain layer 2 solution for Arweave which enables native support for Arweave storage on different smart contract blockchains using those networks' native tokens for storage payment.
 
-## Features
+## 0x04 Features
 
 - Allow the user to upload files to Arweave with Matic payment.
 
@@ -96,7 +96,7 @@ yarn deploy
     
     <img src="readme_assets/signature.gif" style="zoom:33%;" />
 
-## As TaiShang ArweaveUploadPlugin
+## 0x05 As TaiShang ArweaveUploadPlugin
 
 This app enables Polygon users to easily store either small quantity or large quantity data onto Arweave with the assistance of the bundlr-client. Data is packaged into bundles using a bundler from Bundlr Network and dispatched to the Arweave network.
 
