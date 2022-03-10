@@ -580,11 +580,6 @@ function App() {
           <Button w={300} onClick={uploadTxt}>
             Upload Text to Bundlr Network
           </Button>
-
-        {/* <CopyToClipboard text={"test"}
-          >
-          <button>Copy to clipboard with button</button>
-        </CopyToClipboard> */}
           
         </>
       )}
