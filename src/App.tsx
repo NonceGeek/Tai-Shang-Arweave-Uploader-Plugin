@@ -23,6 +23,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { providers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
 
+// import {CopyToClipboard} from './';
+
 declare var window: any; // TODO: specifically extend type to valid injected objects.
 
 function App() {
@@ -49,7 +51,8 @@ function App() {
   const [tagValueOfTxt, setTagValueOfTxt] =
     React.useState<string>("application/elixir");
 
-  const [txt, setTxt] = React.useState<string>("test");
+  var lastTxId: string = "";
+  const [txt, setTxt] = React.useState<string>("just a piece of word");
   const [txtPrice, setTxtPrice] = React.useState<BigNumber>();
 
   const clean = async () => {
@@ -129,13 +132,19 @@ function App() {
               : undefined,
             duration: 15000,
           });
-          console.log("uploaded tx id is " + res.data.id);
+          window.lastTxId = res.data.id;
+          console.log("uploaded tx id is " + window.lastTxId);
         })
         .catch(e => {
           toast({ status: "error", title: `Failed to upload - ${e}` });
         });
     }
   };
+
+  // add by @leeduckgo
+  const copyJson = async() => {
+
+  }
 
   // add by @leeduckgo
   const uploadTxt = async () => {
@@ -157,6 +166,8 @@ function App() {
               : undefined,
             duration: 15000,
           });
+          window.lastTxId = res.data.id;
+          console.log("uploaded tx id is " + window.lastTxId);
         })
         .catch(e => {
           toast({ status: "error", title: `Failed to upload - ${e}` });
@@ -569,6 +580,12 @@ function App() {
           <Button w={300} onClick={uploadTxt}>
             Upload Text to Bundlr Network
           </Button>
+
+        {/* <CopyToClipboard text={"test"}
+          >
+          <button>Copy to clipboard with button</button>
+        </CopyToClipboard> */}
+          
         </>
       )}
     </VStack>

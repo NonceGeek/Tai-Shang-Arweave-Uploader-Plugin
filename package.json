@@ -1,6 +1,6 @@
 {
-  "name": "arweave-polygon-bridge",
-  "homepage": "https://welightproject.github.io/Arweave-Polygon-Bridge/",
+  "name": "tai-shang-arweave-uploader-plugin",
+  "homepage": "https://welightproject.github.io/Tai-Shang-Arweave-Uploader-Plugin",
   "version": "0.1.0",
   "private": true,
   "description": "A demo application that implements the Bundlr web client to facilitate a bridge for users in Polygon to easily store data into Arweave",
@@ -107,6 +107,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/react-copy-to-clipboard": "^5.0.2",
     "gh-pages": "^3.2.3"
   },
   "jest": {
