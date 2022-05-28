@@ -27,6 +27,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 declare var window: any; // TODO: specifically extend type to valid injected objects.
 
+
+function useQuery() {
+  const search = window.location.search;
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 function App() {
   const defaultCurrency = "Select a Currency";
   const defaultSelection = "Select a Provider";
@@ -46,10 +52,11 @@ function App() {
 
   const toast = useToast();
   const intervalRef = React.useRef<number>();
+  const query = useQuery();
 
-  const [tagValue, setTagValue] = React.useState<string>("image/png");
+  const [tagValue, setTagValue] = React.useState<string>(query.get("type") || "image/png");
   const [tagValueOfTxt, setTagValueOfTxt] =
-    React.useState<string>("application/elixir");
+    React.useState<string>(query.get("type") || "application/elixir");
 
 
   const [lastTxId, setLastTxId] = useState("");
@@ -527,8 +534,9 @@ function App() {
           <HStack>
             <Text>Type(default is "image/png"):</Text>
             <Input
-              onChange={event => setTagValue(event.target.value)}
+              value={tagValue}
               placeholder="image/png"
+              onChange={event => setTagValue(event.target.value)}
             />
           </HStack>
 
@@ -565,8 +573,9 @@ function App() {
           <HStack>
             <Text>Type(default is "application/elixir"):</Text>
             <Input
-              onChange={event => setTagValueOfTxt(event.target.value)}
+              value={tagValueOfTxt}
               placeholder="application/elixir"
+              onChange={event => setTagValueOfTxt(event.target.value)}
             />
           </HStack>
 
